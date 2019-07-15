@@ -1,19 +1,18 @@
-def readm(fname='A.csv'):
-    f = open('A.csv', 'r')  
-    A = []
-    for line in f.readlines():
-        A.append( [ float(a) for a in line.strip().split(',') ] )
-    f.close()
-    return A
-
+def readm(name):
+    a =open(name,'r')
+    b =[]
+    for i in a.readlines():
+        b.append([float(x) for x  in i.strip().split(',')])
+    a.close()
+    return b
 def matmul(A,b):
-    m, n = len(A), len(b[0])
-    J = len(A[0]) # A - mxj  # b - Jxn
-    if len(A[0]) == len(b):
-        C = [ [0]*n for i in range(m) ]
-        # A[0][0]*b[0][0] + A[0][1]*b[1][0]+ A[0][1]*b[2][0]
+    m,n = len(A),len(b[0])
+
+    if len(A[0])==len(b):
+        C = [ [0]*n]*m
         for r in range(m):
             for c in range(n):
-                C[r][0] = sum([ A[r][j]*b[j][0] for j in range(J) ])
+                C[r][c]=sum(A[r][j]*b[j][c] for j in  range(len(A[0])))
         return C
-    return []
+    else : 
+        return []
